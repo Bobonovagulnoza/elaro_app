@@ -23,7 +23,6 @@ import 'package:get_it/get_it.dart';
 import '../../feature/login/data/db/secure_storage.dart';
 import '../../feature/profile/blocs/profile_bloc.dart';
 import '../../feature/profile/profile_repository_impl.dart';
-import '../services/secure_storage_service.dart';
 
 final sl = GetIt.instance;
 
@@ -70,6 +69,9 @@ void _repositories() {
   sl.registerLazySingleton<ProfileRepositoryImpl>(
         () => ProfileRepositoryImpl(sl<DioClient>()),
   );
+  // sl.registerLazySingleton<SearchRepositoryImpl>(
+  //       () => SearchRepositoryImpl(sl<DioClient>()),
+  // );
 }
 
 void _blocs() {
@@ -86,6 +88,8 @@ void _blocs() {
   sl.registerLazySingleton(() => SecureStorage ());
   sl.registerFactory(() => AuthBloc(sl<AuthRepositoryImpl>()));
   sl.registerFactory(() => ProfileBloc(sl<ProfileRepositoryImpl>()));
+  // sl.registerFactory(() => SearchBloc(sl<SearchRepositoryImpl>()));
+
 
 
 

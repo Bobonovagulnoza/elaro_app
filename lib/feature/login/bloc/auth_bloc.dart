@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../core/services/secure_storage_service.dart';
 import '../data/db/secure_storage.dart';
 import '../data/repositories/auth_repository.dart';
 import '../../prodik/failure.dart';

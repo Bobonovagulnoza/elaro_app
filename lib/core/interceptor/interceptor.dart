@@ -251,4 +251,34 @@ class DioClient {
       );
     }
   }
-}
+
+  Future<StatusModel> delete({
+    required String url,
+    Map<String, dynamic>? body,
+  }) async {
+    try {
+      final response = await dioClient.delete(
+        "$baseUrl$url",
+        data: jsonEncode(body ?? {}),
+      );
+
+      if (Utils.isDioSuccess(response.statusCode)) {
+        return StatusModel(
+          response: response.data,
+          code: response.statusCode,
+          isSuccess: true,
+        );
+      }
+      return StatusModel(
+        response: response.data,
+        code: response.statusCode,
+        isSuccess: false,
+      );
+    } on DioException catch (e) {
+      log("DioException: ${e.message}");
+      throw Exception("Dio error: ${e.message}");
+    } catch (e) {
+      log("Unknown error: $e");
+      throw Exception("Unexpected error: $e");
+    }
+}}
